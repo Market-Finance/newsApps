@@ -178,7 +178,6 @@ for value
 ### 12.3 Orchestrator
 ### 12.4 Shared
 
-
 ```mermaid
     flowchart TD
     subgraph Flow diagram details the overview of News App Engine Implementation
@@ -197,8 +196,6 @@ for value
             end
         end
 ```
-
-
 
 ## 13. Git push and Deploy
 ```
