@@ -13,7 +13,7 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     auto_complete_list= fm.auto_complete_mover_in()
 
     # Extract chart_v2 for a given stock
-    querystring_list= qs.analysis_query_string(auto_complete_list)
+    querystring_list= qs.details_query_string(auto_complete_list)
 
     details_activity= [
         context.call_activity('details', querystring) for
