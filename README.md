@@ -62,7 +62,7 @@ $abs_secret_name= <define your blob storage secrets name>
 $adls_secret_name= <define your data lake storage secrets name>
 
 # Define the function application name
-$funcapp_name= commonApp
+$funcapp_name= NewsApps
 ```
 
 ## 3. Create a new repository in Github
@@ -74,7 +74,7 @@ git clone <url>
 ```
 # Create a function project in the desired folder
 # Make sure your are in the right folder directory
-func init commonApp --python
+func init NewsApps --python
 
 # Create Python virual environment
 python -m venv .venv 
@@ -147,7 +147,7 @@ az role assignment create --assignee $func_principal_id --role 'Storage Queue Da
 ```
 ## 10. Setup CI/CD for Azure function application
 ```
-# Deployment center for commonApp
+# Deployment center for NewsApps
 source= 'Github'
 sign_in= <define your github username and password>
 organisation= <define your organisation name>
@@ -160,7 +160,7 @@ Version= Python 3.8
 
 ## 11. Check the configuration of the Azure function Application
 ```
-# CommonApp configuration
+# NewsApps configuration
 # Application settings 
 # Name value and source of 
 # ABS_SECRET_NAME, ADLS_SECRET_NAME, X_RAPIDAPI_HOST, X_RAPID_API_KEY are
@@ -172,34 +172,33 @@ for value
 ## 12. Common Application Implementation Overview
 
 ### 12.1 Activities
-#### Combine Companies 
-#### Auto Complete
+#### News Details
 
-### 12.2 DurableFunction Http 
+### 12.2 DurableFunction Http
 ### 12.3 Orchestrator
 ### 12.4 Shared
 
+
 ```mermaid
     flowchart TD
-    subgraph Flow diagram details the overview of Common App Engine Implementation
+    subgraph Flow diagram details the overview of News App Engine Implementation
             A[Auto Complete]
-            BA[ASX listed companies]
-            BB[NASDAQ listed companies]
-            B[Combine List companies]
-            D[Orchestrator]
+            B[News Details]
             F[Blob Storage]
             G[Data Lake]
 
-            subgraph Common Application Durable Functions HTTP Start
-                BA --> B
-                BB --> B
-                D -- FAN IN, and Upload --> G 
-                D -- FAN IN, and Upload --> F
-                B -- FAN OUT to list of companies --> D 
-                A --> D
-                end
-            end    
+            subgraph News Application Durable Functions HTTP Start
+                subgraph Orchestrator
+                F --> A
+                A --> B
+                B --> F
+                B --> G
+                end 
+            end
+        end
 ```
+
+
 
 ## 13. Git push and Deploy
 ```
