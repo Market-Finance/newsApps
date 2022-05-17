@@ -1,5 +1,19 @@
 from shared import mover as mo
 
+def auto_complete_mover_in():
+    """
+    DESCRIPTION: The purpose of this function is to download auto complete
+                 from blob storage location 
+    INPUT: None
+    OUTPUT: encoded string 
+    """
+    # Blob file path and file_name source files
+    blob_file_path= 'MarketFinance/common'
+    blob_file_name= 'auto_complete.json'
+
+    data= mo.blob_storage_download(blob_file_path, blob_file_name)
+    return data
+
 def get_details_mover_out(inMemory_data):
     """
     DESCRIPTION: The purpose of this function is to move mined news 

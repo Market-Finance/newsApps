@@ -4,10 +4,9 @@ import os
 from datetime import datetime
 import azure.functions as func
 import azure.durable_functions as df
-from . import function_mover as fm
 
-from shared import querystring as qs
-from shared import mover as fm
+from shared import query_string as qs
+from shared import function_mover as fm
 
 
 def orchestrator_function(context: df.DurableOrchestrationContext):
