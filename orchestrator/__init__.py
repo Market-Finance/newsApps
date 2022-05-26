@@ -8,21 +8,9 @@ import azure.durable_functions as df
 from shared import query_string as qs
 from shared import function_mover as fm
 
-
 def orchestrator_function(context: df.DurableOrchestrationContext):
-    auto_complete_list= fm.auto_complete_mover_in()
 
-    # Extract chart_v2 for a given stock
-    querystring_list= qs.details_query_string(auto_complete_list)
-
-    details_activity= [
-        context.call_activity('details', querystring) for
-            querystring in querystring_list]
-        
-    details_list= yield context.task_all(details_activity)
-
-    #Moving out the file to blob
-    fm.get_details_mover_out(details_list)
+    yield context.call_activity('details', "None")
 
     return "Success!"
 
