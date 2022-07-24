@@ -1,6 +1,16 @@
 from datetime import datetime
 from datetime import timedelta
 
+def getSublists(lst,n):
+    """
+    DESCRIPTION: The purpose of this method is to split a
+    large list into multiple n number of list
+    INPUT: List of query string dictionaries and n number of list
+    OUTPUT: list of multiple lists (n) of query strings 
+    """
+    subListLength = len(lst) // n 
+    return [lst[i:i + subListLength] for i in range(0, len(lst), subListLength)]
+
 
 def details_query_string(data:list):
     """
